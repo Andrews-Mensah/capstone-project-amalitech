@@ -12,6 +12,12 @@ router.get('/adminlogin', function(req, res, next) {
   res.render("adminlogin");
 });
 
+router.get('/dashboard', function(req,res,next){
+  res.render("adminDashboard")
+})
+
 router.post('/signIn', Login)
+
+
 
 module.exports = router;
