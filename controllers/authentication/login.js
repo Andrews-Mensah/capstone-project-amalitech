@@ -7,9 +7,9 @@ let secret = "andrews"
 
 
 module.exports.Login = async (req, res, next) => {
-    console.log(req.body)
     if (!validator.isEmail(req.body.email) || !req.body.password){
-        return res.status(400).send({ error: "Data not formatted properly" });
+        req.session.loginErrorMessage = 'Email or Password is incorrect'
+        res.redirect('adminlogin')
     }
 
     let user = await User.findOne({
@@ -19,21 +19,19 @@ module.exports.Login = async (req, res, next) => {
     });
 
 if(!user){
-    const validPassword = hashPassword(req.body.password)
-        console.log(validPassword)
-        res.send({message: validPassword, error:"User with the email do not exist"})
+    req.session.loginErrorMessage= 'User do not exist'
+    res.redirect('adminlogin')
     }else{
 
         const validPassword = hashPassword(req.body.password)
-        console.log(validPassword)
-        if (validPassword) {
+        if (validPassword == user.password) {
         req.session.user = user;
         res.send({message:"Success", error: "", RedirectURL:"/user/"})
     }
 
         else {
-            req.session.errorMessage = "Invalid email or password"
-            res.send({message: "", error:"Invalid email or password"})}
+            req.session.loginErrorMessage ='Invalid email or password'
+            res.redirect('adminlogin')
     }
 }
 
@@ -58,4 +56,5 @@ hashPassword = (password) =>{
     return crypto.createHmac('sha256', secret)
         .update(password)
         .digest('hex');
-};
+}
+}

@@ -6,6 +6,12 @@
             <div class="card border-0 shadow rounded-3 my-5">
               <div class="card-body p-4 p-sm-5">
                 <h5 class="card-title text-center mb-5 fw-light fs-5"> Login </h5>
+                <% if(loginErrorMessage){ %>
+                  <div class="alert alert-danger alert-dismissible">
+                      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                      <strong><%=loginErrorMessage%></strong> 
+                    </div>
+              <% }%>
                 <form action="/signIn" method="POST">
                   <div class="form-floating mb-3">
                     <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com">

@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var ejs = require('ejs');
 const db = require('./models');
+const session = require('express-session');
 
 db.sequelize.sync();
 
@@ -24,9 +25,25 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({secret:'andrews',saveUninitialized: true, resave: true}))
+
+// middleware to make 'user' available to all templates
+app.use((req, res, next) => {
+  res.locals.signUpSuccessMessage = req.session.signUpSuccessMessage;
+  res.locals.signUpErrorMessage = req.session.signUpErrorMessage;
+  res.locals.loginSuccessMessage = req.session.loginSuccessMessage;
+  res.locals.loginErrorMessage = req.session.loginErrorMessage;
+  res.locals.profileChangeMessage = req.session.profileChangeMessage;
+  res.locals.portfoilioChangeMessage = req.session.portfoilioChangeMessage;
+  res.locals.passwordChangeMessage = req.session.passwordChangeMessage;
+  res.locals.user = req.session.user;
+  next();
+});
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
