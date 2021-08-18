@@ -2,7 +2,8 @@ const User = require('../../models').User
 const bcrypt = require('bcrypt');
 const validator = require('validator');
 
-const saltRounds = 10;
+const crypto = require('crypto');
+let secret = "andrews"
 
 
 module.exports.Login = async (req, res, next) => {
@@ -18,12 +19,12 @@ module.exports.Login = async (req, res, next) => {
     });
 
 if(!user){
-    const validPassword = await bcrypt.compare(req.body.password, user.password);
+    const validPassword = hashPassword(req.body.password)
         console.log(validPassword)
         res.send({message: validPassword, error:"User with the email do not exist"})
     }else{
 
-        const validPassword = await bcrypt.compare(req.body.password, user.password);
+        const validPassword = hashPassword(req.body.password)
         console.log(validPassword)
         if (validPassword) {
         req.session.user = user;
@@ -51,3 +52,10 @@ module.exports.Logout = async (req,res,next) =>{
 
    
 )};
+
+//hash password
+hashPassword = (password) =>{
+    return crypto.createHmac('sha256', secret)
+        .update(password)
+        .digest('hex');
+};
