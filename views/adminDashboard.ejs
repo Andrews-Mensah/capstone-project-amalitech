@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <meta name="viewport" content="width, initial-scale=1.0">
     <link rel="stylesheet" type = "text/css" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
@@ -111,9 +111,9 @@
     <div class="card border-0 shadow rounded-3 my-5">
         <div class="card-body p-4 p-sm-5">
 
-            <a href="#">
-                <h5 class="card-title text-center mb-1 fw-light fs-5 caution">Voting Polls </h5>
-            </a>
+            
+                <h5 class="card-title text-center mb-1 fw-light fs-5 caution">Voting Polls </h5> <br>
+          
 
             <table class="table">
                 <thead>
@@ -126,6 +126,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <%   polls.map( app => { %>
+                        <tr data-toggle="modal" data-target="#freelancer-info" style="cursor: pointer;">
+                            <td><%=app.name%></td>
+                            <td><%=app.location%></td>
+                            <td></td>
+                            <td>
+                                <button type="button" class="btn btn-primary" id="create-btn" data-toggle="modal" data-target="#my-modal"> Create</button>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> Update</button> 
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> Delete</button>
+                            </td>
+                        </tr>
+                        <%
+                        }); %>
+
+
                     
                 </tbody>
 
@@ -133,5 +148,53 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+              Omnis qui incidunt, corporis fuga velit similique facere libero, 
+              sit eveniet soluta dolores aliquid ratione cum. 
+              Exercitationem ipsum ratione debitis quia eum.
+            </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="./js/main.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+
+  <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+<script>
+    const createModal = document.getElementById('create-btn');
+
+
+    const showModal = ()=>{
+    console.log("This is a modal")
+    document.getElementById('my-modal').classList.toggle('modal')
+
+};
+
+createModal.addEventListener('click', showModal());
+</script>
+  
 </body>
 </html>

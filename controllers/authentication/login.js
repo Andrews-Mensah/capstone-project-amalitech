@@ -1,4 +1,5 @@
 const User = require('../../models').User
+const Poll = require('../../models').Poll
 const bcrypt = require('bcrypt');
 const validator = require('validator');
 
@@ -26,7 +27,9 @@ if(!user){
         const validPassword = hashPassword(req.body.password)
         if (validPassword == user.password) {
         req.session.user = user;
-        res.send({message:"Success", error: "", RedirectURL:"/user/"})
+        
+        res.locals.polls = await Poll.findAll()
+        res.render('adminDashboard')
     }
 
         else {
@@ -34,7 +37,7 @@ if(!user){
             res.redirect('adminlogin')
     }
 }
-
+}
 
 
 
@@ -57,4 +60,4 @@ hashPassword = (password) =>{
         .update(password)
         .digest('hex');
 }
-}
+
