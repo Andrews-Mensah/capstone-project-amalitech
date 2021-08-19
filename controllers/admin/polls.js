@@ -44,6 +44,8 @@ module.exports.DeletePoll = async (req,res,next) =>{
         res.redirect('dashboard')
     }
 };
+
+
 //retrieving all the polls
 module.exports.RetrievingPoll = async (req,res,next) =>{
     const poll = await Poll.create(req.body);
