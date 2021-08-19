@@ -114,7 +114,7 @@
             
                 <h5 class="card-title text-center mb-1 fw-light fs-5 caution">Voting Polls </h5> <br>
           
-
+                <a href="/createpoll"> <button type="button" class="btn btn-primary" id="create-btn" data-toggle="modal" data-target="#my-modal"> Create</button> </a>
             <table class="table">
                 <thead>
                     <tr>
@@ -126,19 +126,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <%   polls.map( app => { %>
+                    <%  if(polls) {polls.map( app => { %>
                         <tr data-toggle="modal" data-target="#freelancer-info" style="cursor: pointer;">
                             <td><%=app.name%></td>
                             <td><%=app.location%></td>
                             <td></td>
                             <td>
-                                <button type="button" class="btn btn-primary" id="create-btn" data-toggle="modal" data-target="#my-modal"> Create</button>
+                                
                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> Update</button> 
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> Delete</button>
+                                <a href="/deletepoll/<%=app.id%> " class="btn btn-danger"> Delete</a>
                             </td>
                         </tr>
                         <%
-                        }); %>
+                        })}%>
 
 
                     
