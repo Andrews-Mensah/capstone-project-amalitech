@@ -3,14 +3,16 @@ const Poll = require('../../models').Poll
 
 //creating a poll
 module.exports.CreatePoll = async (req,res,next) =>{
+    
     const poll = await Poll.create(req.body);
 
     if(poll){
         req.session.successPollMessage = "Poll Created Successfully";
-        res.redirect('dashboard')
+        res.locals.polls = await Poll.findAll()
+        res.render('adminDashboard')
     } else {
         req.session.errorPollMessage = "Poll Creation Was Not Successful"
-        res.redirect('dashboard')
+        
     }
 };
 
@@ -34,15 +36,17 @@ module.exports.UpdatePoll = async (req,res,next) =>{
 //deleting a poll
 
 module.exports.DeletePoll = async (req,res,next) =>{
-    const poll = await Poll.create(req.body);
 
-    if(poll){
-        req.session.successPollMessage = "Poll Created Successfully";
-        res.redirect('dashboard')
-    } else {
-        req.session.errorPollMessage = "Poll Creation Was Not Successful"
-        res.redirect('dashboard')
+await Poll.destroy({
+    where: {
+      id: req.params.id
     }
+  }).then(async (poll) =>{
+    res.locals.polls = await Poll.findAll()
+    res.redirect('/dashboard')
+  }).catch((error)=>{
+      console.log(error)
+  }) 
 };
 
 

@@ -28,13 +28,12 @@ router.get('/updatepoll', function(req,res,next){
   res.render("updatePoll")
   })
 
-router.get('/deletepoll', function(req,res,next){
-    res.render("deletePoll")
-    })
+
 
 router.post('/createPoll', CreatePoll)
 router.post('/updatePoll', UpdatePoll)
-router.post('/deletePoll', DeletePoll)
+
+router.get('/deletepoll/:id', DeletePoll)
 
 router.post('/signIn', Login)
 
