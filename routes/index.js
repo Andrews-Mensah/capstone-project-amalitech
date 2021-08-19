@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const {Login} = require('../controllers/authentication/login')
 const {CreatePoll} = require('../controllers/admin/polls')
+const {UpdatePoll} = require('../controllers/admin/polls')
 
 
 /* GET home page. */
@@ -22,7 +23,12 @@ router.get('/createpoll', function(req,res,next){
 res.render("createPoll")
 })
 
+router.get('/updatepoll', function(req,res,next){
+  res.render("updatePoll")
+  })
+
 router.post('/createPoll', CreatePoll)
+router.post('/updatePoll', UpdatePoll)
 
 router.post('/signIn', Login)
 
