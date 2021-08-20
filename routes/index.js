@@ -4,13 +4,12 @@ const {Login} = require('../controllers/authentication/login')
 const {CreatePoll} = require('../controllers/admin/polls')
 const {UpdatePoll} = require('../controllers/admin/polls')
 const {DeletePoll} = require('../controllers/admin/polls')
+const {GetIndex} = require('../controllers/index')
 
 
 /* GET home page. */
 
-router.get('/', function(req,res,next){
-  res.render("index", {title: "Voting Application"} ) 
-})
+router.get('/', GetIndex)
 
 router.get('/adminlogin', function(req, res, next) {
   res.render("adminlogin");
@@ -36,6 +35,7 @@ router.post('/updatePoll', UpdatePoll)
 router.get('/deletepoll/:id', DeletePoll)
 
 router.post('/signIn', Login)
+
 
 
 
