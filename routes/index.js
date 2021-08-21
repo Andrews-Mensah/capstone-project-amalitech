@@ -5,7 +5,8 @@ const {CreatePoll} = require('../controllers/admin/polls')
 const {UpdatePoll} = require('../controllers/admin/polls')
 const {DeletePoll} = require('../controllers/admin/polls')
 const {GetIndex} = require('../controllers/index')
-
+const {UpdatePolls} = require('../controllers/admin/polls')
+const {CreateCandidate} = require('../controllers/admin/candidate')
 
 /* GET home page. */
 
@@ -23,14 +24,14 @@ router.get('/createpoll', function(req,res,next){
 res.render("createPoll")
 })
 
-router.get('/updatepoll', function(req,res,next){
-  res.render("updatePoll")
-  })
+router.get('/updatepoll/:id', UpdatePolls)
 
 
 
 router.post('/createPoll', CreatePoll)
-router.post('/updatePoll', UpdatePoll)
+router.post('/updatePoll/:id', UpdatePoll)
+
+router.post('/createCandidate', CreateCandidate)
 
 router.get('/deletepoll/:id', DeletePoll)
 

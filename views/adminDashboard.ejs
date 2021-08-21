@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width, initial-scale=1.0">
-    <link rel="stylesheet" type = "text/css" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
-</head>
-<body>
+<%- include('header'); -%>
 
 <nav class="navbar navbar-expand-md">
     <a class="navbar-brand" href="#">Logo</a>
@@ -120,7 +110,6 @@
                     <tr>
                         <th scope="col">Voting Polls</th>
                         <th scope="col">Location</th>
-                        <th scope="col">Total Candidates</th>
                         <th scope="col">Actions</th>
                         
                     </tr>
@@ -130,10 +119,10 @@
                         <tr data-toggle="modal" data-target="#freelancer-info" style="cursor: pointer;">
                             <td><%=app.name%></td>
                             <td><%=app.location%></td>
-                            <td></td>
+                            
                             <td>
                                 
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter"> Update</button> 
+                                <a href="/updatepoll/<%=app.id%>" class="btn btn-primary">Update</a>
                                 <a href="/deletepoll/<%=app.id%> " class="btn btn-danger"> Delete</a>
                             </td>
                         </tr>
@@ -148,30 +137,6 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
-<div class="modal fade" id="my-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            <p> Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
-              Omnis qui incidunt, corporis fuga velit similique facere libero, 
-              sit eveniet soluta dolores aliquid ratione cum. 
-              Exercitationem ipsum ratione debitis quia eum.
-            </p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
   <script src="./js/main.js"></script>
@@ -182,19 +147,6 @@
 
   <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-
-<script>
-    const createModal = document.getElementById('create-btn');
-
-
-    const showModal = ()=>{
-    console.log("This is a modal")
-    document.getElementById('my-modal').classList.toggle('modal')
-
-};
-
-createModal.addEventListener('click', showModal());
-</script>
   
 </body>
 </html>

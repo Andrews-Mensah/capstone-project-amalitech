@@ -1,9 +1,9 @@
 'use strict';
 const {
-  Model, ForeignKeyConstraintError
+  Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Poll extends Model {
+  class Candidate extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,18 +11,22 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Poll.hasMany(models.Candidate,{
+      Candidate.belongsTo(models.Poll,{
         foreignKey:'pollId',
         onDelete:'CASCADE'
-      })
+      });
     }
   };
-  Poll.init({
-    name: DataTypes.STRING,
-    location: DataTypes.STRING,
+  Candidate.init({
+    firstName: DataTypes.STRING,
+    lastName: DataTypes.STRING,
+    politicalParty: DataTypes.STRING,
+    position: DataTypes.STRING,
+    pollId: DataTypes.INTEGER
+    
   }, {
     sequelize,
-    modelName: 'Poll',
+    modelName: 'Candidate',
   });
-  return Poll;
+  return Candidate;
 };
