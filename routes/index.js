@@ -7,6 +7,7 @@ const {DeletePoll} = require('../controllers/admin/polls')
 const {GetIndex} = require('../controllers/index')
 const {UpdatePolls} = require('../controllers/admin/polls')
 const {CreateCandidate} = require('../controllers/admin/candidate')
+const {GetSinglePoll} = require('../controllers/index')
 
 /* GET home page. */
 
@@ -34,6 +35,8 @@ router.post('/updatePoll/:id', UpdatePoll)
 router.post('/createCandidate', CreateCandidate)
 
 router.get('/deletepoll/:id', DeletePoll)
+
+router.get('/getsinglepoll/:id',GetSinglePoll)
 
 router.post('/signIn', Login)
 

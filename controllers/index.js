@@ -7,3 +7,7 @@ module.exports.GetIndex = async (req, res, next) => {
         res.render('index', {votingPolls})
     }
 }
+
+module.exports.GetSinglePoll = async (req, res, next) => {
+    res.render('singlepoll')
+}

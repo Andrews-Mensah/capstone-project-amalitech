@@ -1,7 +1,7 @@
 {
   "name": "capstone",
   "version": "0.0.0",
-  "engines":{
+  "engines": {
     "node": "14.x"
   },
   "private": true,
@@ -11,6 +11,7 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bootstrap": "^5.1.0",
+    "brcypt": "^1.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "ejs": "^3.1.6",
