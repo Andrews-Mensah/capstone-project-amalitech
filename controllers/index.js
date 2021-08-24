@@ -9,5 +9,10 @@ module.exports.GetIndex = async (req, res, next) => {
 }
 
 module.exports.GetSinglePoll = async (req, res, next) => {
-    res.render('singlepoll')
+    let candidates = await Candidate.findAll({
+        where: {
+            pollId: req.params.id
+        }
+    })
+    res.render('singlepoll',{candidates})
 }

@@ -1,6 +1,6 @@
 <%- include('header'); -%>
 <div class="container">
-    <h3 style="justify-content: center;"> Cast Your Vote </h3>
+    <h3 style="justify-content: center;">Update Election Poll</h3>
   <div class="row">
 
     <!--Form for updating of the election polls-->
@@ -19,14 +19,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                      
+                      <%  if(candidates.length !== 0) {candidates.map( candidate => { %>
                         <tr data-toggle="modal" data-target="#freelancer-info" style="cursor: pointer;">
-                            <td>Clement</td>
-                            <td>Koomosn</td>
-                            <td>Npp</td>
-                            <td>2</td>
+                            <td><%=candidate.firstName%></td>
+                            <td><%=candidate.lastName%></td>
+                            <td><%=candidate.politicalParty%></td>
+                            <td>4</td>
                         </tr>
-                        
+                        <%
+                        })} else { %>
+                          <td>No candidate for this election poll</td>
+                        <%    
+                        }
+                      %>
+                      
                     </tbody>
       
                 </table>
@@ -55,8 +61,14 @@
                 </div>
                 <div class="form-floating mb-3" >
                     <select name="candidateId" id="candidateId" class="form-control">
-                    <option value="">Kwame Duncan</option>
-                    <option value="">Captain Duncan</option>
+                      <%  if(candidates.length !== 0) {candidates.map( candidate => { %>
+                        <option value="<%=candidate.id%>"><%=candidate.firstName +" " + candidate.lastName%></option>
+                        <%
+                        })} else { %>
+                         <option value="">No Candidate Registered</option>
+                        <%    
+                        }
+                      %>
                     </select>
                   
                    <label for="floatingInput">Candidate Name</label>
