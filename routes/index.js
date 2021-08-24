@@ -8,6 +8,7 @@ const {GetIndex} = require('../controllers/index')
 const {UpdatePolls} = require('../controllers/admin/polls')
 const {CreateCandidate} = require('../controllers/admin/candidate')
 const {GetSinglePoll} = require('../controllers/index')
+const Candidate = require('../models').Candidate
 
 /* GET home page. */
 
