@@ -1,4 +1,6 @@
 const Poll = require('../models').Poll
+const Candidate = require('../models').Candidate
+
 
 
 module.exports.GetIndex = async (req, res, next) => {
